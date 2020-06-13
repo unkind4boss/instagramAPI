@@ -4,6 +4,8 @@ from InstagramAPI import InstagramAPI
 from time import sleep
 
 def createFile(listId) :
+    """ write id in file """
+    
     f = open(r"idFollowers.txt", "a", encoding="utf-8")
     for index in listId :
         f.write(str(index) + "\n")
@@ -11,6 +13,10 @@ def createFile(listId) :
     return
 
 def changingDict(followers):
+    """ getTotalFollowers returns dictionaries.
+    in changingDict we are create only user id.
+
+"""
     numbers = []
     for index in range(len(followers)):
         new_followers = dict(followers[index])
@@ -22,7 +28,8 @@ def getTotalFollowers(api, user_id):
     """
     Returns the list of followers of the user.
     It should be equivalent of calling api.getTotalFollowers from InstagramAPI
-    """
+
+"""
     control = 30000
     followers = []
     next_max_id = True
@@ -45,9 +52,14 @@ def getTotalFollowers(api, user_id):
     return followers
 
 def main() :
+    """ Log in, create a list,
+        where to get subscribers for
+        and save them to the list
+
+"""
     api = InstagramAPI("login", "password")
     api.login()
-    user_id = [6862614996, 1732379292, 876044126]
+    user_id = [0000, 0000, 0000]
     # user_id = api.username_id
     for index_u in user_id :
         followers = getTotalFollowers(api, str(index_u))
